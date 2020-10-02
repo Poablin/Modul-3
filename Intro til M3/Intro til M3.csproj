@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{639B79A4-FE7B-46FA-B323-A392AF1AC97F}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Intro_til_M3</RootNamespace>
+    <RootNamespace>Intro</RootNamespace>
     <AssemblyName>Intro til M3</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converting.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
