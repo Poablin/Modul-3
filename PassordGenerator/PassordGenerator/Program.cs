@@ -10,10 +10,8 @@ namespace PassordGenerator
     {
         static void Main(string[] args)
         {
-            if (args.Length <= 0)
-            {
-                string output =
-                    @"PasswordGenerator  
+            string startMessage =
+                @"PasswordGenerator  
   Options:
   - l = lower case letter
   - L = upper case letter
@@ -24,7 +22,14 @@ Example: PasswordGenerator 14 lLssdd
          Min. 1 upper case
          Min. 2 special characters
          Min. 2 digits";
-                Console.WriteLine(output);
+            if (args.Length <= 0)
+            {
+                Console.WriteLine(startMessage);
+            }
+
+            if (args.Length == 2)
+            {
+
             }
         }
     }
