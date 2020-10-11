@@ -8,6 +8,7 @@ namespace PassordGenerator
 {
     class Program
     {
+        static readonly Random Random = new Random();
         static void Main(string[] args)
         {
             if (!IsValid(args))
@@ -16,8 +17,45 @@ namespace PassordGenerator
                 return;
             }
 
-            string pattern = args[1];
-            Console.WriteLine(pattern.PadRight(Convert.ToInt32(args[0]), 'l'));
+            int length = Convert.ToInt32(args[0]);
+            string options = args[1]; 
+            string pattern = options.PadRight(length, 'l');
+            Console.WriteLine("Pattern er: " + pattern);
+
+            string output = "";
+            while (pattern.Length > 0)
+            {
+                string s = pattern.Substring(pattern.Length - 1);
+                if (s == "l") output += WriteRandomLowerCaseLetter();
+                if (s == "L") output += WriteRandomUpperCaseLetter();
+                if (s == "d") output += WriteRandomDigit();
+                if (s == "s") output += WriteRandomSpecialCharacter();
+                pattern = pattern.Remove(pattern.Length - 1);
+                Console.WriteLine("s variabelen er lik: " + s);
+            }
+            
+            Console.WriteLine("output variablen er lik: " + output);
+            // Er på punkt 6 i oppgaven
+        }
+
+        private static char WriteRandomLowerCaseLetter()
+        {
+            return 'G';
+        }
+
+        private static char WriteRandomUpperCaseLetter()
+        {
+            return 'Z';
+        }
+
+        private static char WriteRandomDigit()
+        {
+            return Random.Next(0, 9).ToString()[0];
+        }
+
+        private static char WriteRandomSpecialCharacter()
+        {
+            return 'Y';
         }
 
         private static bool IsValid(string[] args)
@@ -41,7 +79,7 @@ namespace PassordGenerator
 
                 foreach (var c in s2)
                 {
-                    if (c != 'L' && c != 'd' && c != 's')
+                    if (c != 'l' && c != 'L' && c != 'd' && c != 's')
                     {
                         return false;
                     }
