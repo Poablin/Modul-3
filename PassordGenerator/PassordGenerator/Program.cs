@@ -26,14 +26,14 @@ namespace PassordGenerator
             string output = String.Empty;
             while (pattern.Length > 0)
             {
-                var randomIndex = Random.Next(0, pattern.Length - 1);
+                var randomIndex = Random.Next(0, pattern.Length);
+                Console.WriteLine("randomIndex er lik :" + randomIndex);
                 var c = pattern[randomIndex];
                 if (c == 'l') output += WriteRandomLowerCaseLetter();
                 if (c == 'L') output += WriteRandomUpperCaseLetter();
                 if (c == 'd') output += WriteRandomDigit();
                 if (c == 's') output += WriteRandomSpecialCharacter();
                 pattern = pattern.Remove(randomIndex, 1);
-                Console.WriteLine("randomIndex er lik :" + randomIndex);
                 Console.WriteLine("c er lik: " + c);
             }
             
