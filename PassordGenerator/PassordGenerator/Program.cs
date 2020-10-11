@@ -23,19 +23,21 @@ namespace PassordGenerator
             string pattern = options.PadRight(length, 'l');
             Console.WriteLine("Pattern er: " + pattern);
 
-            string output = "";
+            string output = String.Empty;
             while (pattern.Length > 0)
             {
-                string s = pattern.Substring(pattern.Length - 1);
-                if (s == "l") output += WriteRandomLowerCaseLetter();
-                if (s == "L") output += WriteRandomUpperCaseLetter();
-                if (s == "d") output += WriteRandomDigit();
-                if (s == "s") output += WriteRandomSpecialCharacter();
-                pattern = pattern.Remove(pattern.Length - 1);
+                var randomIndex = Random.Next(0, pattern.Length - 1);
+                var c = pattern[randomIndex];
+                if (c == 'l') output += WriteRandomLowerCaseLetter();
+                if (c == 'L') output += WriteRandomUpperCaseLetter();
+                if (c == 'd') output += WriteRandomDigit();
+                if (c == 's') output += WriteRandomSpecialCharacter();
+                pattern = pattern.Remove(randomIndex, 1);
+                Console.WriteLine("randomIndex er lik :" + randomIndex);
+                Console.WriteLine("c er lik: " + c);
             }
             
-            Console.WriteLine("output er: " + output);
-            // Er på punkt 6 i oppgaven
+            Console.WriteLine("Output er: " + output);
         }
 
         private static char WriteRandomLowerCaseLetter()
@@ -55,7 +57,7 @@ namespace PassordGenerator
 
         private static char WriteRandomSpecialCharacter()
         {
-            var specialCharacters = "!\"#¤%&/(){}[]";
+            string specialCharacters = "!\"#¤%&/(){}[]";
             var index = Random.Next(0, specialCharacters.Length - 1);
             return specialCharacters[index];
         }
