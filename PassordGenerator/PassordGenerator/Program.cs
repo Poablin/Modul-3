@@ -10,6 +10,49 @@ namespace PassordGenerator
     {
         static void Main(string[] args)
         {
+            if (!IsValid(args))
+            {
+                ShowHelpMessage();
+                return;
+            }
+
+            string pattern = args[1];
+            Console.WriteLine(pattern.PadRight(Convert.ToInt32(args[0]), 'l'));
+        }
+
+        private static bool IsValid(string[] args)
+        {
+            if (args.Length <= 0)
+            {
+                return false;
+            }
+
+            if (args.Length == 2)
+            {
+                string s1 = args[0];
+                string s2 = args[1];
+                foreach (var c in s1)
+                {
+                    if (char.IsDigit(c) == false)
+                    {
+                        return false;
+                    }
+                }
+
+                foreach (var c in s2)
+                {
+                    if (c != 'L' && c != 'd' && c != 's')
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        private static void ShowHelpMessage()
+        {
             string startMessage =
                 @"PasswordGenerator  
   Options:
@@ -22,15 +65,7 @@ Example: PasswordGenerator 14 lLssdd
          Min. 1 upper case
          Min. 2 special characters
          Min. 2 digits";
-            if (args.Length <= 0)
-            {
-                Console.WriteLine(startMessage);
-            }
-
-            if (args.Length == 2)
-            {
-
-            }
+            Console.WriteLine(startMessage);
         }
     }
 }
