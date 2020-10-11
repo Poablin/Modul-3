@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,21 +32,20 @@ namespace PassordGenerator
                 if (s == "d") output += WriteRandomDigit();
                 if (s == "s") output += WriteRandomSpecialCharacter();
                 pattern = pattern.Remove(pattern.Length - 1);
-                Console.WriteLine("s variabelen er lik: " + s);
             }
             
-            Console.WriteLine("output variablen er lik: " + output);
+            Console.WriteLine("output er: " + output);
             // Er på punkt 6 i oppgaven
         }
 
         private static char WriteRandomLowerCaseLetter()
         {
-            return 'G';
+            return GetRandomLetter('a', 'z');
         }
 
         private static char WriteRandomUpperCaseLetter()
         {
-            return 'Z';
+            return GetRandomLetter('A', 'Z');
         }
 
         private static char WriteRandomDigit()
@@ -55,7 +55,14 @@ namespace PassordGenerator
 
         private static char WriteRandomSpecialCharacter()
         {
-            return 'Y';
+            var specialCharacters = "!\"#¤%&/(){}[]";
+            var index = Random.Next(0, specialCharacters.Length - 1);
+            return specialCharacters[index];
+        }
+
+        static char GetRandomLetter(char min, char max)
+        {
+            return (char)Random.Next(min, max);
         }
 
         private static bool IsValid(string[] args)
