@@ -10,11 +10,16 @@ namespace Testeapp
         static void Main(string[] args)
         {
            var words = ReturnWords();
-           Console.WriteLine(words[0]);
-           foreach (var word in words)
-           {
-               Console.WriteLine(word);
-           }
+           var randomIndex = new Random().Next(0, words.Length);
+
+           var randomWord = words[randomIndex];
+
+           Console.WriteLine(randomWord);
+
+           //foreach (var word in words)
+           //{
+           //    Console.WriteLine(word);
+           //}
         }
 
         private static string[] ReturnWords()
@@ -26,7 +31,7 @@ namespace Testeapp
             {
                 var parts = line.Split("\t");
                 var word = parts[1];
-                if (word != lastWord && !word.Contains("-") && !word.Contains(" ") && word.Length > 3) list.Add(word);
+                if (word != lastWord && !word.Contains("-") && !word.Contains(" ") && word.Length > 6) list.Add(word);
                 lastWord = word;
             }
 
