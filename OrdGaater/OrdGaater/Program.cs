@@ -9,21 +9,28 @@ namespace Testeapp
     {
         static void Main(string[] args)
         {
-            var path = @"C:\Users\GET\source\repos\Modul-3\OrdGaater\OrdGaater\ordliste.txt";
-            string[] allLines = File.ReadAllLines(path);
-            MakeListFromWords(allLines);
+           var words = ReturnWords();
+           Console.WriteLine(words[0]);
+           foreach (var word in words)
+           {
+               Console.WriteLine(word);
+           }
         }
 
-        private static void MakeListFromWords(string[] allLines)
+        private static string[] ReturnWords()
         {
+            var path = @"C:\Users\GET\source\repos\Modul-3\OrdGaater\OrdGaater\ordliste.txt";
             var lastWord = string.Empty;
-            foreach (var line in allLines)
+            var list = new List<string>();
+            foreach (var line in File.ReadAllLines(path))
             {
                 var parts = line.Split("\t");
                 var word = parts[1];
-                if (word!=lastWord) Console.WriteLine(word);
+                if (word != lastWord && !word.Contains("-") && !word.Contains(" ") && word.Length > 3) list.Add(word);
                 lastWord = word;
             }
+
+            return list.ToArray();
         }
     }
 }
