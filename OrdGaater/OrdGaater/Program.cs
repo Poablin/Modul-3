@@ -9,7 +9,7 @@ namespace Testeapp
     {
         static void Main(string[] args)
         {
-            var path = @"C:\Users\GET\source\repos\Testeapp\Testeapp\ordliste.txt";
+            var path = @"C:\Users\GET\source\repos\Modul-3\OrdGaater\OrdGaater\ordliste.txt";
             string[] allLines = File.ReadAllLines(path);
             foreach (var line in allLines)
             {
