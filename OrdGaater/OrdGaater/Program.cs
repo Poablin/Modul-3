@@ -20,21 +20,20 @@ namespace Testeapp
            {
                if (words[randomIndex].Substring(words[randomIndex].Length - 3) == word.Substring(0, 3))
                {
-                    Console.WriteLine(word + " " + randomWord);
-                    firstWord = word;
-                    secondWord = randomWord;
+                   firstWord = words[randomIndex].Substring(words[randomIndex].Length - 3);
+                    secondWord = word.Substring(0, 3);
                }
 
                else if (words[randomIndex].Substring(words[randomIndex].Length - 4) == word.Substring(0, 4))
                {
-                   Console.WriteLine(word + " " + randomWord);
-                   secondWord = randomWord;
+                   firstWord = words[randomIndex].Substring(words[randomIndex].Length - 4);
+                   secondWord = word.Substring(0, 4);
                }
 
                else if (words[randomIndex].Substring(words[randomIndex].Length - 5) == word.Substring(0, 5))
                {
-                   Console.WriteLine(word + " " + randomWord);
-                   secondWord = randomWord;
+                   firstWord = words[randomIndex].Substring(words[randomIndex].Length - 5);
+                   secondWord = word.Substring(0, 5);
                }
            }
 
