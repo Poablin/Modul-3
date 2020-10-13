@@ -9,34 +9,50 @@ namespace Testeapp
     {
         static void Main(string[] args)
         {
-           var words = ReturnWords();
+            var words = ReturnWords();
 
-           var randomWord = words[new Random().Next(0, words.Length)];
+            var randomWord = words[new Random().Next(0, words.Length)];
 
-           var firstWord = string.Empty;
-           var secondWord = string.Empty;
-           foreach (var word in words)
-           {
-               if (randomWord.Substring(randomWord.Length - 3) == word.Substring(0, 3))
-               {
-                   firstWord = randomWord;
-                    secondWord = word;
-               }
+            var firstWord = string.Empty;
+            var secondWord = string.Empty;
+            var commonWord = string.Empty;
+            bool foundWord = false;
 
-               else if (randomWord.Substring(randomWord.Length - 4) == word.Substring(0, 4))
-               {
-                   firstWord = randomWord;
-                   secondWord = word;
-               }
 
-               else if (randomWord.Substring(randomWord.Length - 5) == word.Substring(0, 5))
-               {
-                   firstWord = randomWord;
-                   secondWord = word;
-               }
-           }
+            while (foundWord == false)
+            {
+                foreach (var word in words)
+                {
+                    if (randomWord.Substring(randomWord.Length - 3) == word.Substring(0, 3))
+                    {
+                        commonWord = randomWord.Substring(randomWord.Length - 3);
+                        firstWord = randomWord;
+                        secondWord = word;
+                        foundWord = true;
+                    }
 
-           Console.WriteLine("Første ord: " + firstWord + "  " + "Andre ord:" + secondWord);
+                    else if (randomWord.Substring(randomWord.Length - 4) == word.Substring(0, 4))
+                    {
+                        commonWord = randomWord.Substring(randomWord.Length - 4);
+                        firstWord = randomWord;
+                        secondWord = word;
+                        foundWord = true;
+                    }
+
+                    else if (randomWord.Substring(randomWord.Length - 5) == word.Substring(0, 5))
+                    {
+                        commonWord = randomWord.Substring(randomWord.Length - 5);
+                        firstWord = randomWord;
+                        secondWord = word;
+                        foundWord = true;
+                    }
+                }
+            }
+
+            foundWord = false;
+
+            Console.WriteLine("Felles ord : " + commonWord);
+            Console.WriteLine("Første ord: " + firstWord + "  " + "Andre ord:" + secondWord);
 
         }
 
