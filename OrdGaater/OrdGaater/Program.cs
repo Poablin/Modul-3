@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Microsoft.VisualBasic.FileIO;
 
 namespace Testeapp
 {
@@ -18,6 +17,11 @@ namespace Testeapp
             var commonWord = string.Empty;
             bool foundWord = false;
 
+            List<string> firstWordList = new List<string>();
+            
+            
+            string[] secondWordList;
+
 
             while (foundWord == false)
             {
@@ -29,6 +33,8 @@ namespace Testeapp
                         firstWord = randomWord;
                         secondWord = word;
                         foundWord = true;
+                       
+                        firstWordList.Add(firstWord);
                     }
 
                     else if (randomWord.Substring(randomWord.Length - 4) == word.Substring(0, 4))
@@ -37,6 +43,7 @@ namespace Testeapp
                         firstWord = randomWord;
                         secondWord = word;
                         foundWord = true;
+                        firstWordList.Add(firstWord);
                     }
 
                     else if (randomWord.Substring(randomWord.Length - 5) == word.Substring(0, 5))
@@ -45,10 +52,19 @@ namespace Testeapp
                         firstWord = randomWord;
                         secondWord = word;
                         foundWord = true;
+                        firstWordList.Add(firstWord);
                     }
                 }
             }
 
+            String[] str = firstWordList.ToArray();
+
+            for (var index = 0; index < str.Length; index++)
+            {
+                Console.WriteLine(str[index]);
+            }
+
+            
             Console.WriteLine("Felles ord : " + commonWord);
             Console.WriteLine("Første ord: " + firstWord + "  " + "Andre ord:" + secondWord);
 
