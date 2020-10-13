@@ -49,8 +49,6 @@ namespace Testeapp
                 }
             }
 
-            foundWord = false;
-
             Console.WriteLine("Felles ord : " + commonWord);
             Console.WriteLine("Første ord: " + firstWord + "  " + "Andre ord:" + secondWord);
 
