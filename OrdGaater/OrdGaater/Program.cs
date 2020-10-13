@@ -15,15 +15,13 @@ namespace Testeapp
             var firstWord = string.Empty;
             var secondWord = string.Empty;
             var commonWord = string.Empty;
-            bool foundWord = false;
+            int wordCount = 0;
 
             List<string> firstWordList = new List<string>();
-            
-            
-            string[] secondWordList;
+            List<string> secondWordList = new List<string>();
 
 
-            while (foundWord == false)
+            while (wordCount < 200)
             {
                 foreach (var word in words)
                 {
@@ -32,9 +30,10 @@ namespace Testeapp
                         commonWord = randomWord.Substring(randomWord.Length - 3);
                         firstWord = randomWord;
                         secondWord = word;
-                        foundWord = true;
-                       
-                        firstWordList.Add(firstWord);
+                        wordCount++;
+                        firstWordList.Add(firstWord + wordCount);
+                        secondWordList.Add(secondWord + wordCount);
+                        if (wordCount == 200) break;
                     }
 
                     else if (randomWord.Substring(randomWord.Length - 4) == word.Substring(0, 4))
@@ -42,8 +41,10 @@ namespace Testeapp
                         commonWord = randomWord.Substring(randomWord.Length - 4);
                         firstWord = randomWord;
                         secondWord = word;
-                        foundWord = true;
-                        firstWordList.Add(firstWord);
+                        wordCount++;
+                        firstWordList.Add(firstWord + wordCount);
+                        secondWordList.Add(secondWord + wordCount);
+                        if (wordCount == 200) break;
                     }
 
                     else if (randomWord.Substring(randomWord.Length - 5) == word.Substring(0, 5))
@@ -51,23 +52,27 @@ namespace Testeapp
                         commonWord = randomWord.Substring(randomWord.Length - 5);
                         firstWord = randomWord;
                         secondWord = word;
-                        foundWord = true;
-                        firstWordList.Add(firstWord);
+                        wordCount++;
+                        firstWordList.Add(firstWord + wordCount);
+                        secondWordList.Add(secondWord + wordCount);
+                        if (wordCount == 200) break;
                     }
                 }
             }
 
             String[] str = firstWordList.ToArray();
+            String[] str2 = secondWordList.ToArray();
+
+
 
             for (var index = 0; index < str.Length; index++)
             {
-                Console.WriteLine(str[index]);
+                Console.WriteLine(str[index] + " " + str2[index]);
             }
 
-            
+
             Console.WriteLine("Felles ord : " + commonWord);
             Console.WriteLine("Første ord: " + firstWord + "  " + "Andre ord:" + secondWord);
-
         }
 
         private static string[] ReturnWords()
