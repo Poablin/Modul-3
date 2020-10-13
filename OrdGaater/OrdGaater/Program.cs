@@ -10,44 +10,41 @@ namespace Testeapp
         static void Main(string[] args)
         {
            var words = ReturnWords();
-           var randomIndex = new Random().Next(0, words.Length);
 
-           var randomWord = words[randomIndex];
+           var randomWord = words[new Random().Next(0, words.Length)];
 
            var firstWord = string.Empty;
            var secondWord = string.Empty;
            foreach (var word in words)
            {
-               if (words[randomIndex].Substring(words[randomIndex].Length - 3) == word.Substring(0, 3))
+               if (randomWord.Substring(randomWord.Length - 3) == word.Substring(0, 3))
                {
-                   firstWord = words[randomIndex].Substring(words[randomIndex].Length - 3);
-                    secondWord = word.Substring(0, 3);
+                   firstWord = randomWord;
+                    secondWord = word;
                }
 
-               else if (words[randomIndex].Substring(words[randomIndex].Length - 4) == word.Substring(0, 4))
+               else if (randomWord.Substring(randomWord.Length - 4) == word.Substring(0, 4))
                {
-                   firstWord = words[randomIndex].Substring(words[randomIndex].Length - 4);
-                   secondWord = word.Substring(0, 4);
+                   firstWord = randomWord;
+                   secondWord = word;
                }
 
-               else if (words[randomIndex].Substring(words[randomIndex].Length - 5) == word.Substring(0, 5))
+               else if (randomWord.Substring(randomWord.Length - 5) == word.Substring(0, 5))
                {
-                   firstWord = words[randomIndex].Substring(words[randomIndex].Length - 5);
-                   secondWord = word.Substring(0, 5);
+                   firstWord = randomWord;
+                   secondWord = word;
                }
            }
 
+            Console.WriteLine(randomWord);
+
            Console.WriteLine("Første ord: " + firstWord + "  " + "Andre ord:" + secondWord);
 
-            //foreach (var word in words)
-            //{
-            //    Console.WriteLine(word);
-            //}
         }
 
         private static string[] ReturnWords()
         {
-            var path = @"C:\Users\GET\source\repos\Modul-3\OrdGaater\OrdGaater\ordliste.txt";
+            var path = @"C:\Users\krist\Documents\GitHub\Modul-3\OrdGaater\OrdGaater\ordliste.txt";
             var lastWord = string.Empty;
             var list = new List<string>();
             foreach (var line in File.ReadAllLines(path))
