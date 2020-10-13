@@ -36,8 +36,6 @@ namespace Testeapp
                }
            }
 
-            Console.WriteLine(randomWord);
-
            Console.WriteLine("Første ord: " + firstWord + "  " + "Andre ord:" + secondWord);
 
         }
