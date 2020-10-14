@@ -1,5 +1,8 @@
 ﻿namespace Oblig1
 {
+
+
+
     internal class Person
     {
         public int Id { get; set; }
