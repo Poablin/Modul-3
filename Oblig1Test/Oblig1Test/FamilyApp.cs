@@ -28,10 +28,10 @@ vis<id> => viser en bestemt person med mor, far og barn(og id for disse, slik at
 
             if (command == "liste")
             {
-                
+
                 foreach (var person in _people)
                 {
-                  str += person.GetDescription() + "\n";
+                    str += person.GetDescription() + "\n";
                 }
             }
 
@@ -47,14 +47,22 @@ vis<id> => viser en bestemt person med mor, far og barn(og id for disse, slik at
                     }
                 }
             }
+            str = FindChildrenForFather(childrenSearchId, str);
+            str = FindChildrenForMother(childrenSearchId, str);
+
+            return str;
+        }
+
+        private string FindChildrenForFather(int childrenSearchId, string str)
+        {
             if (childrenSearchId != 0)
             {
                 int count = 0;
                 foreach (var person in _people)
                 {
-                    if (person.Father != null && person.Mother != null)
+                    if (person.Father != null)
                     {
-                        if (childrenSearchId == person.Father.Id || childrenSearchId == person.Mother.Id)
+                        if (childrenSearchId == person.Father.Id)
                         {
                             if (count == 0)
                             {
@@ -71,8 +79,40 @@ vis<id> => viser en bestemt person med mor, far og barn(og id for disse, slik at
                     str += "\n";
                 }
             }
-            
+
+            return str;
+        }
+
+        private string FindChildrenForMother(int childrenSearchId, string str)
+        {
+            if (childrenSearchId != 0)
+            {
+                int count = 0;
+                foreach (var person in _people)
+                {
+                    if (person.Mother != null)
+                    {
+                        if (childrenSearchId == person.Mother.Id)
+                        {
+                            if (count == 0)
+                            {
+                                str += "\n  Barn:";
+                                count++;
+                            }
+                            str += $"\n    {person.FirstName} (Id={person.Id}) Født: {person.BirthYear}";
+                        }
+                    }
+                }
+
+                if (count > 0)
+                {
+                    str += "\n";
+                }
+            }
+
             return str;
         }
     }
+
+
 }
