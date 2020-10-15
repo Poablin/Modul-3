@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Oblig1Test
 {
@@ -75,7 +76,7 @@ vis<id> => viser en bestemt person med mor, far og barn(og id for disse, slik at
 
             if (command == "liste")
             {
-                
+
             }
 
             return "";
