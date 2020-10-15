@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.ComTypes;
+using System.Threading.Channels;
 
 namespace Oblig1Test
 {
@@ -16,6 +17,7 @@ namespace Oblig1Test
 
         public object HandleCommand(string command)
         {
+            int childrenSearchId = 0;
             string str = "";
             if (command == "hjelp")
             {
@@ -33,18 +35,43 @@ vis<id> => viser en bestemt person med mor, far og barn(og id for disse, slik at
                 }
             }
 
-            if (command.Substring(0, 3) == "vis")
+            if (command.Substring(0, 3) == "vis" && command.Length > 4)
             {
-                int searchId = int.Parse(command.Substring(command.Length - 1));
+                int searchId = int.Parse(command.Substring(command.Length - 2));
                 foreach (var person in _people)
                 {
                     if (person.Id == searchId)
                     {
                         str += person.GetDescription();
+                        childrenSearchId = person.Id;
                     }
                 }
             }
+            if (childrenSearchId != 0)
+            {
+                int count = 0;
+                foreach (var person in _people)
+                {
+                    if (person.Father != null && person.Mother != null)
+                    {
+                        if (childrenSearchId == person.Father.Id || childrenSearchId == person.Mother.Id)
+                        {
+                            if (count == 0)
+                            {
+                                str += "\n  Barn:";
+                                count++;
+                            }
+                            str += $"\n    {person.FirstName} (Id={person.Id}) Født: {person.BirthYear}";
+                        }
+                    }
+                }
 
+                if (count > 0)
+                {
+                    str += "\n";
+                }
+            }
+            
             return str;
         }
     }
