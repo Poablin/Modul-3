@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 
 namespace Oblig1Test
 {
@@ -38,106 +38,6 @@ namespace Oblig1Test
         }
 
 
-    }
-
-    public class FamilyApp
-    {
-        internal string WelcomeMessage = "Hei! Welkommen til Family Appen!";
-        internal string CommandPrompt = "Commandoene er hjelp, liste og vis \n";
-        private Person sverreMagnus;
-        private Person ingridAlexandra;
-        private Person haakon;
-        private Person metteMarit;
-        private Person marius;
-        private Person harald;
-        private Person sonja;
-        private Person olav;
-
-        public FamilyApp(Person sverreMagnus, Person ingridAlexandra, Person haakon, Person metteMarit, Person marius, Person harald, Person sonja, Person olav)
-        {
-            this.sverreMagnus = sverreMagnus;
-            this.ingridAlexandra = ingridAlexandra;
-            this.haakon = haakon;
-            this.metteMarit = metteMarit;
-            this.marius = marius;
-            this.harald = harald;
-            this.sonja = sonja;
-            this.olav = olav;
-        }
-
-        internal object HandleCommand(string command)
-        {
-            if (command == "hjelp")
-            {
-                return @"hjelp => viser en hjelpetekst som forklarer alle kommandoene
-liste => lister alle personer med id, fornavn, fødselsår, dødsår og navn og id på mor og far om det finnes registrert.
-vis<id> => viser en bestemt person med mor, far og barn(og id for disse, slik at man lett kan vise en av dem)";
-            }
-
-            if (command == "liste")
-            {
-
-            }
-
-            return "";
-        }
-    }
-    public class Person
-    {
-        public int Id { get; set; }
-
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public int BirthYear { get; set; }
-        public int DeathYear { get; set; }
-        public Person Father { get; set; }
-        public Person Mother { get; set; }
-
-        public string GetDescription()
-        {
-            if (FirstName == null || LastName == null || BirthYear == 0 || DeathYear == 0 || Father == null || Mother == null)
-            {
-                return CheckWhichEmptyField();
-            }
-            
-            return $"{FirstName} {LastName} (Id={Id}) Født: {BirthYear} Død: {DeathYear} Far: {Father.FirstName} (Id={Father.Id}) Mor: {Mother.FirstName} (Id={Mother.Id})";
-        }
-
-        private string CheckWhichEmptyField()
-        {
-
-            string str = "";
-            if (FirstName != null)
-            {
-                str += $"{FirstName} ";
-            }
-            if (LastName != null)
-            {
-                str += $"{LastName} ";
-            }
-            if (Id != 0)
-            {
-                str += $"(Id={Id}) ";
-            }
-            if (BirthYear != 0)
-            {
-                str += $"Født: {BirthYear} ";
-            }
-            if (DeathYear != 0)
-            {
-                str += $"Død: {DeathYear} ";
-            }
-            if (Father != null)
-            {
-                str += $"Far: {Father.FirstName} (Id={Father.Id}) ";
-            }
-            if (Mother != null)
-            {
-                str += $"(Mor: {Mother.FirstName} (Id={Mother.Id})";
-            }
-
-            return str;
-        }
     }
 }
 
