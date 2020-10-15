@@ -27,21 +27,22 @@ namespace Oblig1Test
             var app = new FamilyApp(sverreMagnus, ingridAlexandra, haakon,
                 metteMarit, marius, harald, sonja, olav);
             Console.WriteLine(app.WelcomeMessage);
-            //while (true)
-            //{
-            //    Console.Write(app.CommandPrompt);
-            //    var command = Console.ReadLine();
-            //    var response = app.HandleCommand(command);
-            //    Console.WriteLine(response);
-            //}
-        }
+            while (true)
+            {
+                Console.Write(app.CommandPrompt);
+                var command = Console.ReadLine();
+                var response = app.HandleCommand(command);
+                Console.WriteLine(response);
+            }
         }
 
-    internal class FamilyApp
+
+    }
+
+    public class FamilyApp
     {
-        internal string WelcomeMessage = @"hjelp => viser en hjelpetekst som forklarer alle kommandoene
-liste => lister alle personer med id, fornavn, fødselsår, dødsår og navn og id på mor og far om det finnes registrert.
-vis<id> => viser en bestemt person med mor, far og barn(og id for disse, slik at man lett kan vise en av dem)";
+        internal string WelcomeMessage = "Hei! Welkommen til Family Appen!";
+        internal string CommandPrompt = "Commandoene er hjelp, liste og vis \n";
         private Person sverreMagnus;
         private Person ingridAlexandra;
         private Person haakon;
@@ -61,6 +62,23 @@ vis<id> => viser en bestemt person med mor, far og barn(og id for disse, slik at
             this.harald = harald;
             this.sonja = sonja;
             this.olav = olav;
+        }
+
+        internal object HandleCommand(string command)
+        {
+            if (command == "hjelp")
+            {
+                return @"hjelp => viser en hjelpetekst som forklarer alle kommandoene
+liste => lister alle personer med id, fornavn, fødselsår, dødsår og navn og id på mor og far om det finnes registrert.
+vis<id> => viser en bestemt person med mor, far og barn(og id for disse, slik at man lett kan vise en av dem)";
+            }
+
+            if (command == "liste")
+            {
+                
+            }
+
+            return "";
         }
     }
     public class Person
