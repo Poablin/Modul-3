@@ -34,9 +34,9 @@ namespace Oblig1Test
 
         public string GetDescription()
         {
-            if (FirstName != string.Empty) 
+            if (FirstName == null && LastName == null && BirthYear == 0 && DeathYear == 0 && Father == null && Mother == null)
             {
-                
+                return $"(Id={Id})";
             }
             return $"{FirstName} {LastName} (Id={Id}) Født: {BirthYear} Død: {DeathYear} Far: {Father.FirstName} (Id={Father.Id}) Mor: {Mother.FirstName} (Id={Mother.Id})";
         }
