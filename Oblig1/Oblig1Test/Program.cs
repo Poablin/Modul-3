@@ -6,18 +6,6 @@ namespace Oblig1
     {
         static void Main(string[] args)
         {
-
-                var p = new Person
-                {
-                    Id = 17,
-                    FirstName = "Ola",
-                    LastName = "Nordmann",
-                    BirthYear = 2000,
-                    DeathYear = 3000,
-                    Father = new Person() { Id = 23, FirstName = "Per" },
-                    Mother = new Person() { Id = 29, FirstName = "Lise" },
-                };
-        
             var sverreMagnus = new Person { Id = 1, FirstName = "Sverre Magnus", BirthYear = 2005 };
             var ingridAlexandra = new Person { Id = 2, FirstName = "Ingrid Alexandra", BirthYear = 2004 };
             var haakon = new Person { Id = 3, FirstName = "Haakon Magnus", BirthYear = 1973 };
@@ -39,20 +27,16 @@ namespace Oblig1
             var app = new FamilyApp(sverreMagnus, ingridAlexandra, haakon,
                 metteMarit, marius, harald, sonja, olav);
             Console.WriteLine(app.WelcomeMessage);
-            Console.WriteLine(app);
-
-            //while (true)
-            //{
-            //    Console.Write(app.CommandPrompt);
-            //    var command = Console.ReadLine();
-            //    var response = app.HandleCommand(command);
-            //    Console.WriteLine(response);
-            //}
-
+            while (true)
+            {
+                Console.Write(app.CommandPrompt);
+                var command = Console.ReadLine();
+                var response = app.HandleCommand(command);
+                Console.WriteLine(response);
+            }
         }
-        public static void GetDescription()
-        {
 
-        }
+
     }
 }
+
