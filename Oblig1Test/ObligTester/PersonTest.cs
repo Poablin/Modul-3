@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using Oblig1Test;
 
-namespace ObligTester
+namespace PersonTest
 {
     public class Tests
     {
@@ -39,7 +39,36 @@ namespace ObligTester
             };
 
             var actualDescription = p.GetDescription();
-            var expectedDescription = "(Id=1)";
+            var expectedDescription = "(Id=1) ";
+
+            Assert.AreEqual(expectedDescription, actualDescription);
+        }
+        [Test]
+        public void TestSomeFields()
+        {
+            var p = new Person
+            {
+                Id = 1,
+                LastName = "Nordmann",
+                DeathYear = 3000,
+            };
+
+            var actualDescription = p.GetDescription();
+            var expectedDescription = "Nordmann (Id=1) Død: 3000 ";
+
+            Assert.AreEqual(expectedDescription, actualDescription);
+        }
+        [Test]
+        public void TestSomeOtherFields()
+        {
+            var p = new Person
+            {
+                FirstName = "Ola",
+                BirthYear = 2000,
+            };
+
+            var actualDescription = p.GetDescription();
+            var expectedDescription = "Ola Født: 2000 ";
 
             Assert.AreEqual(expectedDescription, actualDescription);
         }
