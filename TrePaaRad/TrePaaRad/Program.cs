@@ -1,4 +1,5 @@
 ﻿using System;
+using static TrePaaRad.BoardView;
 
 namespace TrePaaRad
 {
@@ -6,8 +7,13 @@ namespace TrePaaRad
     {
         static void Main(string[] args)
         {
-            var board = "   a b c\r\n ┌─────┐\r\n1│o    │\r\n2│    o│\r\n3│× ×  │\r\n └─────┘";
-            Console.WriteLine(board);
+            
+            ShowBoard();
+
+            while (true)
+            {
+                Console.ReadLine();
+            }
         }
     }
 }
