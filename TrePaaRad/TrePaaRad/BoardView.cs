@@ -4,10 +4,16 @@ namespace TrePaaRad
 {
     class BoardView
     {
-        public static void ShowBoard()
+        public static void ShowBoard(BoardModel boardModel)
         {
-            string board = "   a b c\r\n ┌─────┐\r\n1│o    │\r\n2│    o│\r\n3│× ×  │\r\n └─────┘";
-            Console.WriteLine(board);
+
+            var board = boardModel.BoxContents;
+            Console.WriteLine("  a b c");
+            Console.WriteLine(" ┌─────┐");
+            Console.WriteLine("1│o    │");
+            Console.WriteLine("2│    o│");
+            Console.WriteLine("3│× ×  │");
+            Console.WriteLine(" └─────┘");
         }
     }
 }
