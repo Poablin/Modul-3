@@ -44,60 +44,35 @@ vis<id> => viser en bestemt person med mor, far og barn(og id for disse, slik at
                     }
                 }
             }
-            str = FindChildrenForFather(childrenSearchId, str);
-            str = FindChildrenForMother(childrenSearchId, str);
+            str = FindChildren(childrenSearchId, str);
 
             return str;
         }
 
-        private string FindChildrenForFather(int childrenSearchId, string str)
+        private string FindChildren(int childrenSearchId, string str)
         {
             if (childrenSearchId != 0)
             {
                 int count = 0;
                 foreach (var person in _people)
                 {
-                    if (person.Father != null)
+                    if (person.Father != null && childrenSearchId == person.Father.Id)
                     {
-                        if (childrenSearchId == person.Father.Id)
+                        if (count == 0)
                         {
-                            if (count == 0)
-                            {
-                                str += "\n  Barn:";
-                                count++;
-                            }
-                            str += $"\n    {person.FirstName} (Id={person.Id}) Født: {person.BirthYear}";
+                            str += "\n  Barn:";
+                            count++;
                         }
+                        str += $"\n    {person.FirstName} (Id={person.Id}) Født: {person.BirthYear}";
                     }
-                }
-
-                if (count > 0)
-                {
-                    str += "\n";
-                }
-            }
-
-            return str;
-        }
-
-        private string FindChildrenForMother(int childrenSearchId, string str)
-        {
-            if (childrenSearchId != 0)
-            {
-                int count = 0;
-                foreach (var person in _people)
-                {
-                    if (person.Mother != null)
+                    if (person.Mother != null && childrenSearchId == person.Mother.Id)
                     {
-                        if (childrenSearchId == person.Mother.Id)
+                        if (count == 0)
                         {
-                            if (count == 0)
-                            {
-                                str += "\n  Barn:";
-                                count++;
-                            }
-                            str += $"\n    {person.FirstName} (Id={person.Id}) Født: {person.BirthYear}";
+                            str += "\n  Barn:";
+                            count++;
                         }
+                        str += $"\n    {person.FirstName} (Id={person.Id}) Født: {person.BirthYear}";
                     }
                 }
 
@@ -110,4 +85,4 @@ vis<id> => viser en bestemt person med mor, far og barn(og id for disse, slik at
             return str;
         }
     }
-}
+    }
