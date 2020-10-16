@@ -85,4 +85,4 @@ vis<id> => viser en bestemt person med mor, far og barn(og id for disse, slik at
             return str;
         }
     }
-    }
+}
