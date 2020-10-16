@@ -75,13 +75,11 @@ vis<id> => viser en bestemt person med mor, far og barn(og id for disse, slik at
                         str += $"\n    {person.FirstName} (Id={person.Id}) Født: {person.BirthYear}";
                     }
                 }
-
                 if (count > 0)
                 {
                     str += "\n";
                 }
             }
-
             return str;
         }
     }
