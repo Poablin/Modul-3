@@ -17,35 +17,24 @@ namespace Oblig1
             int childrenSearchId = 0;
             string str = "";
             if (command == "hjelp")
-            {
-                str += @"hjelp => viser en hjelpetekst som forklarer alle kommandoene
-liste => lister alle personer med id, fornavn, fødselsår, dødsår og navn og id på mor og far om det finnes registrert.
-vis<id> => viser en bestemt person med mor, far og barn(og id for disse, slik at man lett kan vise en av dem)";
-            }
-
+                str += "\nhjelp => viser en hjelpetekst som forklarer alle kommandoenliste\n" +
+                       "liste => lister alle personer med id, fornavn, fødselsår, dødsår og navn og id på mor og far om det finnes registrert.\n" +
+                       "vis <id> => viser en bestemt person med mor, far og barn(og id for disse, slik at man lett kan vise en av dem)\n";
             if (command == "liste")
-            {
-
                 foreach (var person in _people)
-                {
                     str += person.GetDescription() + "\n";
-                }
-            }
-
             if (command.Substring(0, 3) == "vis" && command.Length > 4)
             {
-                int searchId = int.Parse(command.Substring(command.Length - 2));
+                var searchId = int.Parse(command.Substring(command.Length - 2));
                 foreach (var person in _people)
-                {
                     if (person.Id == searchId)
                     {
                         str += person.GetDescription();
                         childrenSearchId = person.Id;
                     }
-                }
             }
-            str = FindChildren(childrenSearchId, str);
 
+            str = FindChildren(childrenSearchId, str);
             return str;
         }
 
@@ -63,8 +52,10 @@ vis<id> => viser en bestemt person med mor, far og barn(og id for disse, slik at
                             str += "\n  Barn:";
                             count++;
                         }
+
                         str += $"\n    {person.FirstName} (Id={person.Id}) Født: {person.BirthYear}";
                     }
+
                     if (person.Mother != null && childrenSearchId == person.Mother.Id)
                     {
                         if (count == 0)
@@ -72,14 +63,17 @@ vis<id> => viser en bestemt person med mor, far og barn(og id for disse, slik at
                             str += "\n  Barn:";
                             count++;
                         }
+
                         str += $"\n    {person.FirstName} (Id={person.Id}) Født: {person.BirthYear}";
                     }
                 }
+
                 if (count > 0)
                 {
                     str += "\n";
                 }
             }
+
             return str;
         }
     }
