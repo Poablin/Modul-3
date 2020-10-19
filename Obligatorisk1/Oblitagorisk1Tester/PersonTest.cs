@@ -39,7 +39,7 @@ namespace PersonTest
             };
 
             var actualDescription = p.GetDescription();
-            var expectedDescription = "(Id=1) ";
+            var expectedDescription = "(Id=1)";
 
             Assert.AreEqual(expectedDescription, actualDescription);
         }
@@ -54,7 +54,7 @@ namespace PersonTest
             };
 
             var actualDescription = p.GetDescription();
-            var expectedDescription = "Nordmann (Id=1) Død: 3000 ";
+            var expectedDescription = "Nordmann (Id=1) Død: 3000";
 
             Assert.AreEqual(expectedDescription, actualDescription);
         }
@@ -68,7 +68,7 @@ namespace PersonTest
             };
 
             var actualDescription = p.GetDescription();
-            var expectedDescription = "Ola Født: 2000 ";
+            var expectedDescription = "Ola Født: 2000";
 
             Assert.AreEqual(expectedDescription, actualDescription);
         }

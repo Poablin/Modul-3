@@ -1,4 +1,8 @@
-﻿namespace Oblig1
+﻿using System;
+using System.Linq;
+using System.Text;
+
+namespace Oblig1
 {
     public class Person
     {
@@ -13,48 +17,20 @@
 
         public string GetDescription()
         {
-            if (FirstName == null || LastName == null || BirthYear == 0 || DeathYear == 0 || Father == null || Mother == null)
-            {
-                return CheckWhichEmptyField();
-            }
-
-            return $"{FirstName} {LastName} (Id={Id}) Født: {BirthYear} Død: {DeathYear} Far: {Father.FirstName} (Id={Father.Id}) Mor: {Mother.FirstName} (Id={Mother.Id})";
+            return BuildString();
         }
 
-        private string CheckWhichEmptyField()
+        private string BuildString()
         {
-
             string str = "";
-            if (FirstName != null)
-            {
-                str += $"{FirstName} ";
-            }
-            if (LastName != null)
-            {
-                str += $"{LastName} ";
-            }
-            if (Id != 0)
-            {
-                str += $"(Id={Id}) ";
-            }
-            if (BirthYear != 0)
-            {
-                str += $"Født: {BirthYear} ";
-            }
-            if (DeathYear != 0)
-            {
-                str += $"Død: {DeathYear} ";
-            }
-            if (Father != null)
-            {
-                str += $"Far: {Father.FirstName} (Id={Father.Id}) ";
-            }
-            if (Mother != null)
-            {
-                str += $"Mor: {Mother.FirstName} (Id={Mother.Id})";
-            }
-
-            return str;
+            str += FirstName != null ? FirstName + " " : "";
+            str += LastName != null ? LastName + " " : "";
+            str += Id != 0 ? $"(Id={Id}) " : "";
+            str += BirthYear != 0 ? $"Født: {BirthYear} " : "";
+            str += DeathYear != 0 ? $"Død: {DeathYear} " : "";
+            str += Father != null ? $"Far: {Father.FirstName} (Id={Father.Id}) " : "";
+            str += Mother != null ? $"Mor: {Mother.FirstName} (Id={Mother.Id}) " : "";
+            return str.Trim();
         }
     }
 }
