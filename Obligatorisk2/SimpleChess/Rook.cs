@@ -4,7 +4,7 @@ namespace SimpleChess
 {
     class Rook : Piece
     {
-        public Rook() : base("rook")
+        public Rook() : base("TRN")
         {
 
         }
