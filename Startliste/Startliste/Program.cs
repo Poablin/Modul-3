@@ -8,7 +8,9 @@ namespace Startliste
     {
         static void Main(string[] args)
         {
-            var list = new List<Registration>(); 
+            var registrationList = new List<Registration>();
+            var clubList = new List<Club>();
+
             using (var stream = new StreamReader("startlist.csv"))
             {
                 string line;
@@ -17,12 +19,21 @@ namespace Startliste
                     var str = line;
                     var stringArray = str.Split(',');
                     var registration = new Registration(stringArray[0], stringArray[1], stringArray[2], stringArray[3], stringArray[4], stringArray[5]);
-                    list.Add(registration);
+                    registrationList.Add(registration);
                 }
 
-                foreach (var content in list)
+                foreach (var registration in registrationList)
                 {
-                    Console.WriteLine(content.Name);
+                    if (registration.Club != "\"\"" && registration.Club != "\"Club\"")
+                    {
+                        var newClub = new Club(registration.Club, registration);
+                        clubList.Add(newClub);
+                    }
+                }
+
+                foreach (var club in clubList)
+                {
+                    Console.WriteLine(club.ClubName);
                 }
             }
         }
