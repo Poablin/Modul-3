@@ -11,30 +11,28 @@ namespace Startliste
             var registrationList = new List<Registration>();
             var clubList = new List<Club>();
 
-            using (var stream = new StreamReader("startlist.csv"))
+            using var stream = new StreamReader("startlist.csv");
+            string line;
+            while ((line = stream.ReadLine()) != null)
             {
-                string line;
-                while ((line = stream.ReadLine()) != null)
-                {
-                    var str = line;
-                    var stringArray = str.Split(',');
-                    var registration = new Registration(stringArray[0], stringArray[1], stringArray[2], stringArray[3], stringArray[4], stringArray[5]);
-                    registrationList.Add(registration);
-                }
+                var str = line;
+                var stringArray = str.Split(',');
+                var registration = new Registration(stringArray[0], stringArray[1], stringArray[2], stringArray[3], stringArray[4], stringArray[5]);
+                registrationList.Add(registration);
+            }
 
-                foreach (var registration in registrationList)
+            foreach (var registration in registrationList)
+            {
+                if (registration.Club != "\"\"" && registration.Club != "\"Club\"")
                 {
-                    if (registration.Club != "\"\"" && registration.Club != "\"Club\"")
-                    {
-                        var newClub = new Club(registration.Club, registration);
-                        clubList.Add(newClub);
-                    }
+                    var newClub = new Club(registration.Club, registration);
+                    clubList.Add(newClub);
                 }
+            }
 
-                foreach (var club in clubList)
-                {
-                    Console.WriteLine(club.ClubName);
-                }
+            foreach (var club in clubList)
+            {
+                Console.WriteLine(club.ClubName);
             }
         }
     }
