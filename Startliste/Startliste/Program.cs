@@ -8,32 +8,14 @@ namespace Startliste
     {
         static void Main(string[] args)
         {
-            var registrationList = new List<Registration>();
-            var clubList = new List<Club>();
-
+            var model = new Model();
+            
             using var stream = new StreamReader("startlist.csv");
             string headerLine = stream.ReadLine();
             string line;
             while ((line = stream.ReadLine()) != null)
             {
-                var str = line;
-                var stringArray = str.Split(',');
-                var registration = new Registration(stringArray[0], stringArray[1], stringArray[2], stringArray[3], stringArray[4], stringArray[5]);
-                registrationList.Add(registration);
-            }
-
-            foreach (var registration in registrationList)
-            {
-                if (registration.Club != "\"\"")
-                {
-                    var newClub = new Club(registration.Club);
-                    clubList.Add(newClub);
-                }
-            }
-
-            foreach (var club in clubList)
-            {
-                Console.WriteLine(club.Name);
+                model.LineBuilder(line);
             }
         }
     }

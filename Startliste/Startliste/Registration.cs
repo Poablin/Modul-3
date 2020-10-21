@@ -6,14 +6,15 @@ namespace Startliste
 {
     class Registration
     { 
-        public Registration(string startNumber, string name, string club, string nationality, string @group, string @class)
+        public Registration(string line)
         {
-            StartNumber = startNumber;
-            Name = name;
-            Club = club;
-            Nationality = nationality;
-            Group = @group;
-            Class = @class;
+            var lineParts = line.Split(',');
+            StartNumber = lineParts[0];
+            Name = lineParts[1];
+            Club = lineParts[2];
+            Nationality = lineParts[3];
+            Group = lineParts[4];
+            Class = lineParts[5];
         }
 
         public string StartNumber { get; }
