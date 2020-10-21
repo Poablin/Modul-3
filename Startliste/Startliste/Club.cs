@@ -7,8 +7,8 @@
             ClubName = clubName;
             Registrations = registrations;
         }
-        public string ClubName { get; private set; }
-        public Registration Registrations { get; private set; }
+        public string ClubName { get; }
+        public Registration Registrations { get; }
 
     }
 }
