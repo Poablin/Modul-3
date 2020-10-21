@@ -2,13 +2,13 @@
 {
     class Club
     {
-        public Club(string clubName, Registration registrations)
+        public Club(string name)
         {
-            ClubName = clubName;
-            Registrations = registrations;
+            Name = name;
         }
-        public string ClubName { get; }
-        public Registration Registrations { get; }
+
+        public string Name { get; }
+        public Registration Registrations { get; set; }
 
     }
 }

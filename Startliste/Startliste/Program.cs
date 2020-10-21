@@ -12,6 +12,7 @@ namespace Startliste
             var clubList = new List<Club>();
 
             using var stream = new StreamReader("startlist.csv");
+            string headerLine = stream.ReadLine();
             string line;
             while ((line = stream.ReadLine()) != null)
             {
@@ -23,16 +24,16 @@ namespace Startliste
 
             foreach (var registration in registrationList)
             {
-                if (registration.Club != "\"\"" && registration.Club != "\"Club\"")
+                if (registration.Club != "\"\"")
                 {
-                    var newClub = new Club(registration.Club, registration);
+                    var newClub = new Club(registration.Club);
                     clubList.Add(newClub);
                 }
             }
 
             foreach (var club in clubList)
             {
-                Console.WriteLine(club.ClubName);
+                Console.WriteLine(club.Name);
             }
         }
     }
