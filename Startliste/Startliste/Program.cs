@@ -20,9 +20,24 @@ namespace Startliste
                 model.HandleLine(line);
             }
 
-            foreach (var club in model.Clubs)
+            for (var index = 0; index < model.Clubs.Count; index++)
             {
-                Console.WriteLine(club.Name);
+                var no = index + 1;
+                var club = model.Clubs[index];
+                Console.WriteLine(no + " " + club.Name);
+            }
+            while (true) {
+                Console.Write("Skriv inn nummber på klubb" + "\n");
+                var clubNoString = Console.ReadLine();
+                var clubNo = Convert.ToInt32(clubNoString);
+                var clubIndex = clubNo - 1;
+                var selectedClub = model.Clubs[clubIndex];
+
+                Console.WriteLine("\n" + "Alle registrerte i klubben:");
+                foreach (var registration in selectedClub.Registrations)
+                {
+                    Console.WriteLine(registration.Name);
+                }
             }
         }
     }
