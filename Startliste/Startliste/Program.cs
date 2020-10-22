@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Startliste
 {
@@ -15,7 +16,13 @@ namespace Startliste
             string line;
             while ((line = stream.ReadLine()) != null)
             {
-                model.LineBuilder(line);
+                line = stream.ReadLine();
+                model.HandleLine(line);
+            }
+
+            foreach (var club in model.Clubs)
+            {
+                Console.WriteLine(club.Name);
             }
         }
     }
