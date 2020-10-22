@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Startliste
+﻿namespace Startliste
 {
-    class Registration
+    class RegistrationModel
 
     {
-        public Registration(string line)
+        public RegistrationModel(string line)
         {
             var lineParts = line.Split(',');
             StartNumber = lineParts[0].Trim('"');

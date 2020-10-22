@@ -9,14 +9,14 @@ namespace Startliste
         public Model()
         {
             Clubs = new List<Club>();
-            Registrations = new List<Registration>();
+            Registrations = new List<RegistrationModel>();
         }
         public List<Club> Clubs { get; private set; }
-        public List<Registration> Registrations { get; private set; }
+        public List<RegistrationModel> Registrations { get; private set; }
 
         public void HandleLine(string line)
         {
-            var registration = new Registration(line);
+            var registration = new RegistrationModel(line);
             Registrations.Add(registration);
 
             var club = Clubs.FirstOrDefault(club => club.Name == registration.Club);
