@@ -17,9 +17,6 @@ namespace TrePaaRad
             ShowOneLine(3, board);
             ShowOneLine(6, board);
             Console.WriteLine(" └───────┘");
-
-
-
         }
         public static void ShowOneLine(int startIndex, CellContent[] board)
         {
