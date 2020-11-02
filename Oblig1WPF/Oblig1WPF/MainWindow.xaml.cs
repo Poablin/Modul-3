@@ -46,5 +46,12 @@ namespace Oblig1WPF
             str = model.App.FindChildren(childrenSearchId, str);
             FamilyAppList.Items.Add(str);
         }
+
+        private void AddPerson(object sender, RoutedEventArgs e)
+        {
+            FamilyAppList.Items.Clear();
+            var person = new Person{Id = 0,FirstName = NameInput.Text, LastNameInput.Text, BirthYearInput.Text, DeathYearInput};
+            model.App._people.Add();
+        }
     }
 }
