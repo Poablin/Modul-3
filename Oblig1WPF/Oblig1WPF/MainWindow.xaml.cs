@@ -13,6 +13,7 @@ namespace Oblig1WPF
     public partial class MainWindow : Window
     {
         private Model model = new Model();
+        int idCount = 9;
         public MainWindow()
         {
             InitializeComponent();
@@ -49,9 +50,19 @@ namespace Oblig1WPF
 
         private void AddPerson(object sender, RoutedEventArgs e)
         {
-            FamilyAppList.Items.Clear();
-            var person = new Person{Id = 0,FirstName = NameInput.Text, LastNameInput.Text, BirthYearInput.Text, DeathYearInput};
-            model.App._people.Add();
+            if (int.TryParse(BirthYearInput.Text, out int n) && int.TryParse(DeathYearInput.Text, out int n2))
+            {
+                FamilyAppList.Items.Clear();
+                var person = new Person { 
+                    Id = idCount, 
+                    FirstName = NameInput.Text, 
+                    LastName = LastNameInput.Text, 
+                    BirthYear = Convert.ToInt32(BirthYearInput.Text), 
+                    DeathYear = Convert.ToInt32(DeathYearInput.Text) };
+                model.App._people.Add(person);
+                idCount++;
+                ShowList(null, null);
+            }
         }
     }
 }
