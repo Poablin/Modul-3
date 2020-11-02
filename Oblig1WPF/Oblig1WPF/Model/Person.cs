@@ -17,11 +17,6 @@ namespace Oblig1
 
         public string GetDescription()
         {
-            return BuildString();
-        }
-
-        private string BuildString()
-        {
             string str = "";
             str += FirstName != null ? FirstName + " " : "";
             str += LastName != null ? LastName + " " : "";
