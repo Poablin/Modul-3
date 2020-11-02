@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
 using System.Windows;
 using Oblig1;
 
@@ -27,17 +30,18 @@ namespace Oblig1WPF
         private void ShowId(object sender, RoutedEventArgs e)
         {
             FamilyAppList.Items.Clear();
-            int childrenSearchId = 0;
             string str = null;
             var searchId = 0;
-            if (IdInput.Text != "") searchId = Convert.ToInt32(IdInput.Text);
-            foreach (var person in model.App._people)
+            var childrenSearchId = 0;
+            var isNumeric = int.TryParse(IdInput.Text, out int n);
+            if (isNumeric)
             {
-                if (person.Id == searchId)
-                {
-                    str += person.GetDescription();
-                    childrenSearchId = person.Id;
-                }
+                searchId = n;
+            }
+            foreach (var person in model.App._people.Where(person => person.Id == searchId))
+            {
+                str += person.GetDescription();
+                childrenSearchId = person.Id;
             }
             str = model.App.FindChildren(childrenSearchId, str);
             FamilyAppList.Items.Add(str);
