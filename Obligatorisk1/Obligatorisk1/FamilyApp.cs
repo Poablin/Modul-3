@@ -45,18 +45,7 @@ namespace Oblig1
                 int count = 0;
                 foreach (var person in _people)
                 {
-                    if (person.Father != null && childrenSearchId == person.Father.Id)
-                    {
-                        if (count == 0)
-                        {
-                            str += "\n  Barn:";
-                            count++;
-                        }
-
-                        str += $"\n    {person.FirstName} (Id={person.Id}) Født: {person.BirthYear}";
-                    }
-
-                    if (person.Mother != null && childrenSearchId == person.Mother.Id)
+                    if (person.Father != null && childrenSearchId == person.Father.Id || person.Mother != null && childrenSearchId == person.Mother.Id)
                     {
                         if (count == 0)
                         {
