@@ -35,10 +35,7 @@ namespace Oblig1WPF
             var searchId = 0;
             var childrenSearchId = 0;
             var isNumeric = int.TryParse(IdInput.Text, out int n);
-            if (isNumeric)
-            {
-                searchId = n;
-            }
+            if (isNumeric) searchId = n;
             foreach (var person in model.App._people.Where(person => person.Id == searchId))
             {
                 str += person.GetDescription();
@@ -50,19 +47,17 @@ namespace Oblig1WPF
 
         private void AddPerson(object sender, RoutedEventArgs e)
         {
-            if (int.TryParse(BirthYearInput.Text, out int n) && int.TryParse(DeathYearInput.Text, out int n2))
-            {
-                FamilyAppList.Items.Clear();
-                var person = new Person { 
-                    Id = _idCount, 
-                    FirstName = NameInput.Text, 
-                    LastName = LastNameInput.Text, 
-                    BirthYear = Convert.ToInt32(BirthYearInput.Text), 
-                    DeathYear = Convert.ToInt32(DeathYearInput.Text) };
-                model.App._people.Add(person);
-                _idCount++;
-                ShowList(null, null);
-            }
+            if (!int.TryParse(BirthYearInput.Text, out int n) || !int.TryParse(DeathYearInput.Text, out int n2)) return;
+            FamilyAppList.Items.Clear();
+            var person = new Person { 
+                Id = _idCount, 
+                FirstName = NameInput.Text, 
+                LastName = LastNameInput.Text, 
+                BirthYear = Convert.ToInt32(BirthYearInput.Text), 
+                DeathYear = Convert.ToInt32(DeathYearInput.Text) };
+            model.App._people.Add(person);
+            _idCount++;
+            ShowList(null, null);
         }
     }
 }
