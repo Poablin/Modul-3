@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Oblig1WPF.Model;
 
 namespace Oblig1
 {

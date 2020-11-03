@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Globalization;
 using System.Linq;
-using System.Threading;
 using System.Windows;
-using Oblig1;
+using Oblig1WPF.Model;
 
 namespace Oblig1WPF
 {
@@ -12,7 +10,7 @@ namespace Oblig1WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Model model = new Model();
+        private readonly Oblig1.Model _model = new Oblig1.Model();
         private int _idCount = 9;
         public MainWindow()
         {
@@ -22,7 +20,7 @@ namespace Oblig1WPF
         private void ShowList(object sender, RoutedEventArgs e)
         {
             FamilyAppList.Items.Clear();
-            foreach (var person in model.App._people)
+            foreach (var person in _model.App.People)
             {
                 FamilyAppList.Items.Add(person.GetDescription());
             }
@@ -36,12 +34,12 @@ namespace Oblig1WPF
             var childrenSearchId = 0;
             var isNumeric = int.TryParse(IdInput.Text, out int n);
             if (isNumeric) searchId = n;
-            foreach (var person in model.App._people.Where(person => person.Id == searchId))
+            foreach (var person in _model.App.People.Where(person => person.Id == searchId))
             {
                 str += person.GetDescription();
                 childrenSearchId = person.Id;
             }
-            str = model.App.FindChildren(childrenSearchId, str);
+            str = _model.App.FindChildren(childrenSearchId, str);
             FamilyAppList.Items.Add(str);
         }
 
@@ -55,7 +53,7 @@ namespace Oblig1WPF
                 LastName = LastNameInput.Text, 
                 BirthYear = Convert.ToInt32(BirthYearInput.Text), 
                 DeathYear = Convert.ToInt32(DeathYearInput.Text) };
-            model.App._people.Add(person);
+            _model.App.People.Add(person);
             _idCount++;
             ShowList(null, null);
         }

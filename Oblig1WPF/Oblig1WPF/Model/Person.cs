@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-
-namespace Oblig1
+﻿namespace Oblig1WPF.Model
 {
     public class Person
     {
