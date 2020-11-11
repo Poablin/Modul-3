@@ -1,8 +1,12 @@
-﻿namespace TemplateMethodDesignPatternTesting
+﻿using System.Dynamic;
+
+namespace TemplateMethodDesignPatternTesting
 {
     public abstract class Sandwich
     {
-       public virtual void MakeSandwich()
+        protected string[] MeatList { get; set; }
+        protected string[] CheeseList { get; set; }
+        public virtual void MakeSandwich()
         {
             CutBread();
             AddMeat();

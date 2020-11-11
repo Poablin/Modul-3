@@ -4,8 +4,12 @@ namespace TemplateMethodDesignPatternTesting
 {
     class SandwichWithEverything : Sandwich
     {
-        private readonly string[] _meatList = {"Beef","Bacon"};
-        private readonly string[] _cheeseList = {"Cheddar", "Gouda"};
+        public SandwichWithEverything()
+        {
+            MeatList = new string[] { "Beef", "Bacon"};
+            CheeseList = new string[] { "Cheddar", "Gouda" };
+        }
+
         protected override void CutBread()
         {
             Console.WriteLine("Bread has been cut");
@@ -14,7 +18,7 @@ namespace TemplateMethodDesignPatternTesting
         protected override void AddMeat()
         {
             Console.WriteLine("Adding meat:");
-            foreach (var meat in _meatList)
+            foreach (var meat in MeatList)
             {
                 Console.WriteLine(meat);
             }
@@ -25,7 +29,7 @@ namespace TemplateMethodDesignPatternTesting
         protected override void AddCheese()
         {
             Console.WriteLine("Adding cheese:");
-            foreach (var cheese in _cheeseList)
+            foreach (var cheese in CheeseList)
             {
                 Console.WriteLine(cheese);
             }
